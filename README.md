@@ -1,1 +1,1 @@
-# arvpn-api
+# ARVPN API Starter\n\nSimple Node.js API for ARVPN.
