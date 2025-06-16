@@ -1,0 +1,37 @@
+[
+  {
+    "country": "United States",
+    "code": "US",
+    "proxy": "https://us.croxyproxy.com"
+  },
+  {
+    "country": "United Kingdom",
+    "code": "UK",
+    "proxy": "https://uk.croxyproxy.com"
+  },
+  {
+    "country": "Germany",
+    "code": "DE",
+    "proxy": "https://de.croxyproxy.com"
+  },
+  {
+    "country": "France",
+    "code": "FR",
+    "proxy": "https://fr.croxyproxy.com"
+  },
+  {
+    "country": "India",
+    "code": "IN",
+    "proxy": "https://in.croxyproxy.com"
+  },
+  {
+    "country": "Singapore",
+    "code": "SG",
+    "proxy": "https://sg.croxyproxy.com"
+  },
+  {
+    "country": "Japan",
+    "code": "JP",
+    "proxy": "https://jp.croxyproxy.com"
+  }
+]
