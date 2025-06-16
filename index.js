@@ -35,7 +35,7 @@ app.get('/api/random-proxy', (req, res) => {
   res.json(proxy);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`ARVPN Proxy API running on port ${PORT}`);
 });
