@@ -2,36 +2,106 @@
   {
     "country": "United States",
     "code": "US",
-    "proxy": "https://us.croxyproxy.com"
+    "proxy": "socks5://us-proxy.example.com:1080",
+    "http_proxy": "http://us-proxy.example.com:8080",
+    "exit_ip": "23.95.156.123"
   },
   {
-    "country": "United Kingdom",
+    "country": "United Kingdom", 
     "code": "UK",
-    "proxy": "https://uk.croxyproxy.com"
+    "proxy": "socks5://uk-proxy.example.com:1080",
+    "http_proxy": "http://uk-proxy.example.com:8080", 
+    "exit_ip": "185.220.102.8"
   },
   {
     "country": "Germany",
-    "code": "DE",
-    "proxy": "https://de.croxyproxy.com"
+    "code": "DE", 
+    "proxy": "socks5://de-proxy.example.com:1080",
+    "http_proxy": "http://de-proxy.example.com:8080",
+    "exit_ip": "139.59.142.56"
   },
   {
     "country": "France",
     "code": "FR",
-    "proxy": "https://fr.croxyproxy.com"
+    "proxy": "socks5://fr-proxy.example.com:1080", 
+    "http_proxy": "http://fr-proxy.example.com:8080",
+    "exit_ip": "51.158.68.133"
   },
   {
     "country": "India",
     "code": "IN",
-    "proxy": "https://in.croxyproxy.com"
+    "proxy": "socks5://in-proxy.example.com:1080",
+    "http_proxy": "http://in-proxy.example.com:8080", 
+    "exit_ip": "103.47.193.102"
   },
   {
-    "country": "Singapore",
+    "country": "Singapore", 
     "code": "SG",
-    "proxy": "https://sg.croxyproxy.com"
+    "proxy": "socks5://sg-proxy.example.com:1080",
+    "http_proxy": "http://sg-proxy.example.com:8080",
+    "exit_ip": "139.99.96.146"
   },
   {
     "country": "Japan",
     "code": "JP",
-    "proxy": "https://jp.croxyproxy.com"
+    "proxy": "socks5://jp-proxy.example.com:1080",
+    "http_proxy": "http://jp-proxy.example.com:8080", 
+    "exit_ip": "150.95.255.38"
+  },
+  {
+    "country": "Canada",
+    "code": "CA",
+    "proxy": "socks5://ca-proxy.example.com:1080",
+    "http_proxy": "http://ca-proxy.example.com:8080",
+    "exit_ip": "192.99.6.27"
+  },
+  {
+    "country": "Australia", 
+    "code": "AU",
+    "proxy": "socks5://au-proxy.example.com:1080",
+    "http_proxy": "http://au-proxy.example.com:8080",
+    "exit_ip": "45.76.99.173"
+  },
+  {
+    "country": "Netherlands",
+    "code": "NL", 
+    "proxy": "socks5://nl-proxy.example.com:1080",
+    "http_proxy": "http://nl-proxy.example.com:8080",
+    "exit_ip": "95.179.164.233"
+  },
+  {
+    "country": "Brazil",
+    "code": "BR",
+    "proxy": "socks5://br-proxy.example.com:1080",
+    "http_proxy": "http://br-proxy.example.com:8080", 
+    "exit_ip": "177.54.144.205"
+  },
+  {
+    "country": "Russia",
+    "code": "RU", 
+    "proxy": "socks5://ru-proxy.example.com:1080",
+    "http_proxy": "http://ru-proxy.example.com:8080",
+    "exit_ip": "185.220.101.182"
+  },
+  {
+    "country": "South Korea",
+    "code": "KR",
+    "proxy": "socks5://kr-proxy.example.com:1080", 
+    "http_proxy": "http://kr-proxy.example.com:8080",
+    "exit_ip": "175.126.82.19"
+  },
+  {
+    "country": "Italy", 
+    "code": "IT",
+    "proxy": "socks5://it-proxy.example.com:1080",
+    "http_proxy": "http://it-proxy.example.com:8080",
+    "exit_ip": "185.220.102.240"
+  },
+  {
+    "country": "Spain",
+    "code": "ES",
+    "proxy": "socks5://es-proxy.example.com:1080",
+    "http_proxy": "http://es-proxy.example.com:8080", 
+    "exit_ip": "185.220.103.7"
   }
 ]

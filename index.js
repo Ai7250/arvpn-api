@@ -1,40 +1,82 @@
 const express = require('express');
 const cors = require('cors');
-const rateLimit = require('express-rate-limit');
 const app = express();
-const proxies = require('./countries.json');
 
-app.use(cors());
-app.use(rateLimit({ windowMs: 60 * 1000, max: 100 }));
+// Import middleware
+const { generalLimiter, proxyLimiter, randomProxyLimiter, healthCheckLimiter } = require('./middleware/rateLimit');
+const { securityHeaders, requestLogger, errorHandler, corsOptions } = require('./middleware/security');
 
-// Home Route
+// Import routes
+const proxyRoutes = require('./routes/proxy');
+
+// ✅ Security & CORS Setup
+app.use(securityHeaders);
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
+
+// ✅ Request Logging
+app.use(requestLogger);
+
+// ✅ General Rate Limiting
+app.use(generalLimiter);
+
+// ✅ Home Route
 app.get('/', (req, res) => {
-  res.send('✅ ARVPN Proxy API is Live!');
+  res.json({
+    success: true,
+    message: '✅ ARVPN Proxy API is Live!',
+    version: '1.0.0',
+    endpoints: {
+      locations: '/api/proxy/locations',
+      getProxy: '/api/proxy/:code',
+      randomProxy: '/api/proxy/random/proxy',
+      healthCheck: '/api/proxy/health-check',
+      stats: '/api/proxy/stats/overview'
+    },
+    documentation: 'https://github.com/your-username/arvpn-api',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// ✅ GET → All Available Locations
-app.get('/api/locations', (req, res) => {
-  const locations = proxies.map(p => ({ country: p.country, code: p.code }));
-  res.json(locations);
+// ✅ API Health Check
+app.get('/health', (req, res) => {
+  res.json({
+    success: true,
+    status: 'healthy',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    memory: process.memoryUsage()
+  });
 });
 
-// ✅ GET → Specific Proxy URL by Country Code
-app.get('/api/proxy/:code', (req, res) => {
-  const code = req.params.code.toUpperCase();
-  const proxy = proxies.find(p => p.code === code);
+// ✅ Apply specific rate limiters to proxy routes
+app.use('/api/proxy/random', randomProxyLimiter);
+app.use('/api/proxy/health-check', healthCheckLimiter);
+app.use('/api/proxy/:code', proxyLimiter);
 
-  if (proxy) {
-    res.json({ success: true, country: proxy.country, proxy: proxy.proxy });
-  } else {
-    res.status(404).json({ success: false, message: "Location not found" });
-  }
+// ✅ Use proxy routes
+app.use('/api/proxy', proxyRoutes);
+
+// ✅ 404 Handler
+app.use('*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Endpoint not found',
+    availableEndpoints: [
+      'GET /',
+      'GET /health',
+      'GET /api/proxy/locations',
+      'GET /api/proxy/:code',
+      'GET /api/proxy/random/proxy',
+      'POST /api/proxy/health-check',
+      'GET /api/proxy/stats/overview'
+    ]
+  });
 });
 
-// ✅ GET → Random Proxy → For Rotation
-app.get('/api/random-proxy', (req, res) => {
-  const proxy = proxies[Math.floor(Math.random() * proxies.length)];
-  res.json(proxy);
-});
+// ✅ Error Handler
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
